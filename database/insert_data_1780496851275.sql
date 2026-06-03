@@ -1,0 +1,391 @@
+USE banking_system;
+
+INSERT INTO branches (
+    branch_name,
+    branch_code,
+    IFSC_Code,
+    city,
+    state,
+    manager_name,
+    contact_number
+)
+VALUES
+(
+    'Mumbai Main Branch',
+    'BR001',
+    'SBIN0001001',
+    'Mumbai',
+    'Maharashtra',
+    'Rajesh Sharma',
+    '9876543210'
+),
+(
+    'Delhi Central Branch',
+    'BR002',
+    'SBIN0001002',
+    'Delhi',
+    'Delhi',
+    'Anita Verma',
+    '9876543211'
+),
+(
+    'Bangalore Tech Branch',
+    'BR003',
+    'SBIN0001003',
+    'Bangalore',
+    'Karnataka',
+    'Vikram Rao',
+    '9876543212'
+),
+(
+    'Pune Branch',
+    'BR004',
+    'SBIN0001004',
+    'Pune',
+    'Maharashtra',
+    'Sneha Kulkarni',
+    '9876543213'
+),
+(
+    'Hyderabad Branch',
+    'BR005',
+    'SBIN0001005',
+    'Hyderabad',
+    'Telangana',
+    'Arjun Reddy',
+    '9876543214'
+);
+
+INSERT INTO customers (
+    first_name,
+    last_name,
+    email,
+    phone,
+    dob,
+    address
+)
+VALUES
+(
+    'Rahul',
+    'Sharma',
+    'rahul.sharma@gmail.com',
+    '9000000001',
+    '1998-05-14',
+    'Mumbai, Maharashtra'
+),
+(
+    'Priya',
+    'Verma',
+    'priya.verma@gmail.com',
+    '9000000002',
+    '1999-08-22',
+    'Delhi, India'
+),
+(
+    'Arjun',
+    'Reddy',
+    'arjun.reddy@gmail.com',
+    '9000000003',
+    '1997-03-10',
+    'Hyderabad, Telangana'
+),
+(
+    'Sneha',
+    'Kulkarni',
+    'sneha.k@gmail.com',
+    '9000000004',
+    '2000-11-02',
+    'Pune, Maharashtra'
+),
+(
+    'Vikram',
+    'Patel',
+    'vikram.p@gmail.com',
+    '9000000005',
+    '1996-07-18',
+    'Ahmedabad, Gujarat'
+),
+(
+    'Ananya',
+    'Das',
+    'ananya.d@gmail.com',
+    '9000000006',
+    '2001-01-25',
+    'Kolkata, West Bengal'
+),
+(
+    'Karan',
+    'Mehta',
+    'karan.m@gmail.com',
+    '9000000007',
+    '1995-09-09',
+    'Chandigarh, India'
+),
+(
+    'Neha',
+    'Joshi',
+    'neha.j@gmail.com',
+    '9000000008',
+    '1998-12-17',
+    'Jaipur, Rajasthan'
+),
+(
+    'Rohit',
+    'Agarwal',
+    'rohit.a@gmail.com',
+    '9000000009',
+    '1994-06-30',
+    'Lucknow, Uttar Pradesh'
+),
+(
+    'Meera',
+    'Nair',
+    'meera.n@gmail.com',
+    '9000000010',
+    '1999-04-12',
+    'Kochi, Kerala'
+);
+
+INSERT INTO employees (
+    employee_code,
+    first_name,
+    last_name,
+    email,
+    phone,
+    branch_id,
+    role,
+    salary,
+    hire_date
+)
+VALUES
+(
+    'EMP1001',
+    'Rajesh',
+    'Sharma',
+    'rajesh.manager@bank.com',
+    '9100000001',
+    1,
+    'Manager',
+    95000,
+    '2018-03-15'
+),
+(
+    'EMP1002',
+    'Anita',
+    'Verma',
+    'anita.manager@bank.com',
+    '9100000002',
+    2,
+    'Manager',
+    92000,
+    '2019-06-20'
+),
+(
+    'EMP1003',
+    'Vikram',
+    'Rao',
+    'vikram.auditor@bank.com',
+    '9100000003',
+    3,
+    'Auditor',
+    85000,
+    '2020-01-10'
+),
+(
+    'EMP1004',
+    'Sneha',
+    'Kulkarni',
+    'sneha.teller@bank.com',
+    '9100000004',
+    4,
+    'Teller',
+    45000,
+    '2021-08-05'
+),
+(
+    'EMP1005',
+    'Arjun',
+    'Reddy',
+    'arjun.admin@bank.com',
+    '9100000005',
+    5,
+    'Admin',
+    120000,
+    '2017-11-25'
+);
+
+INSERT INTO accounts (
+    account_number,
+    customer_id,
+    branch_id,
+    account_type,
+    balance,
+    minimum_balance,
+    status
+)
+VALUES
+(
+    'SBIN20260001',
+    1,
+    1,
+    'Saving',
+    75000,
+    1000,
+    'Active'
+),
+(
+    'SBIN20260002',
+    2,
+    2,
+    'Current',
+    120000,
+    5000,
+    'Active'
+),
+(
+    'SBIN20260003',
+    3,
+    3,
+    'Saving',
+    45000,
+    1000,
+    'Active'
+),
+(
+    'SBIN20260004',
+    4,
+    4,
+    'Saving',
+    98000,
+    1000,
+    'Frozen'
+),
+(
+    'SBIN20260005',
+    5,
+    5,
+    'Current',
+    250000,
+    5000,
+    'Active'
+),
+(
+    'SBIN20260006',
+    6,
+    1,
+    'Saving',
+    15000,
+    1000,
+    'Active'
+),
+(
+    'SBIN20260007',
+    7,
+    2,
+    'Saving',
+    82000,
+    1000,
+    'Closed'
+),
+(
+    'SBIN20260008',
+    8,
+    3,
+    'Current',
+    300000,
+    5000,
+    'Active'
+),
+(
+    'SBIN20260009',
+    9,
+    4,
+    'Saving',
+    64000,
+    1000,
+    'Active'
+),
+(
+    'SBIN20260010',
+    10,
+    5,
+    'Saving',
+    87000,
+    1000,
+    'Active'
+);
+
+INSERT INTO loans (
+    loan_reference,
+    customer_id,
+    loan_type,
+    principal_amount,
+    interest_rate,
+    tenure_months,
+    monthly_emi,
+    remaining_balance,
+    loan_status,
+    approved_by
+)
+VALUES
+(
+    'LN20260001',
+    1,
+    'Home',
+    2500000,
+    8.5,
+    240,
+    21696,
+    2400000,
+    'Approved',
+    1
+),
+(
+    'LN20260002',
+    3,
+    'Vehicle',
+    800000,
+    9.2,
+    60,
+    16676,
+    720000,
+    'Approved',
+    2
+),
+(
+    'LN20260003',
+    5,
+    'Business',
+    5000000,
+    11.0,
+    120,
+    68857,
+    4800000,
+    'Pending',
+    NULL
+),
+(
+    'LN20260004',
+    7,
+    'Education',
+    1200000,
+    7.8,
+    84,
+    18654,
+    1150000,
+    'Approved',
+    3
+),
+(
+    'LN20260005',
+    9,
+    'Personal',
+    300000,
+    13.5,
+    36,
+    10179,
+    250000,
+    'Rejected',
+    2
+);
+
