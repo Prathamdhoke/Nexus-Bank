@@ -4,6 +4,8 @@ A full-stack banking platform designed to simulate real-world banking operations
 
 The project was built to explore end-to-end system design using a modern React frontend, RESTful Node.js backend, and a relational MySQL database with stored procedures, triggers, views, and indexing strategies.
 
+🚀 **Live Demo:** [Launch Nexus Bank](https://nexus-bank-gamma.vercel.app)
+
 ## Live Architecture
 
 Frontend (Vercel)
