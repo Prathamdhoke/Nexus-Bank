@@ -42,7 +42,7 @@ export default function Sidebar({ open, onClose }: Props) {
               <Landmark size={18} className="text-white" />
             </div>
             <div>
-              <p className="font-bold text-sm leading-tight">BankCore</p>
+              <p className="font-bold text-sm leading-tight">Nexus Bank</p>
               <p className="text-xs text-slate-400">Management System</p>
             </div>
           </div>
