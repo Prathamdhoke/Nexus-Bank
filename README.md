@@ -1,151 +1,138 @@
-# Banking Management System
+# Nexus Bank
 
-A full-stack Banking Management System built with React + TypeScript + Tailwind CSS (frontend) and Node.js + Express + MySQL (backend).
+A full-stack banking platform designed to simulate real-world banking operations including account management, money transfers, loan processing, employee administration, audit tracking, and analytical reporting.
 
-## Features
+The project was built to explore end-to-end system design using a modern React frontend, RESTful Node.js backend, and a relational MySQL database with stored procedures, triggers, views, and indexing strategies.
 
-- Dashboard with charts and analytics
-- Customer Management (CRUD)
-- Account Management (Saving / Current)
-- Money Transfer Center (uses stored procedure — ACID compliant)
-- Transaction History (Transfer, Deposit, Withdrawal)
-- Loan Management with EMI calculator
-- Branch Analytics with charts
-- Employee Management
-- Audit Logs (trigger-based, auto-populated)
-- Reports (DB views, CSV export)
+## Live Architecture
 
-## Project Structure
+Frontend (Vercel)
+↓
+Node.js / Express API (Render)
+↓
+MySQL Database (Railway)
 
-```
-banking-management-system/
-├── backend/            Node.js + Express API server
-│   ├── config/         Database connection
-│   ├── middleware/     Error handler
-│   ├── routes/         API route handlers
-│   ├── server.js       Entry point
-│   └── .env.example    Environment variable template
-├── frontend/           React + TypeScript + Vite + Tailwind CSS
-│   └── src/
-│       ├── api/        Axios API client
-│       ├── components/ Reusable UI components + layout
-│       ├── pages/      All 10 application pages
-│       └── types/      TypeScript type definitions
-└── database/           All SQL files (schema, data, procedures, triggers, views)
-```
+## Key Features
 
-## Prerequisites
+### Banking Operations
 
-- Node.js 18+
-- MySQL 8.0+
-- npm or pnpm
+- Customer onboarding and profile management
+- Savings and Current account management
+- Secure money transfers between accounts
+- Deposit and withdrawal workflows
+- Loan application and approval system
 
-## Setup
+### Analytics Dashboard
 
-### 1. Database
+- Customer and account statistics
+- Loan portfolio insights
+- Branch performance analytics
+- Transaction volume tracking
+- High-value transaction monitoring
 
-```sql
--- Run SQL files in this order:
-source database/schema_1780496851276.sql
-source database/insert_data_1780496851275.sql
-source database/procedures_1780496851275.sql
-source database/triggers_1780496851278.sql
-source database/views_1780496851278.sql
-source database/indexes_1780496851274.sql
-```
+### Administrative Features
 
-### 2. Backend
+- Employee management
+- Branch administration
+- Audit log monitoring
+- Reporting and data exports
 
-```bash
-cd backend
-npm install
+## Technical Highlights
 
-# Copy and configure environment
-cp .env.example .env
-# Edit .env with your MySQL credentials
+### Transaction Integrity
 
-npm start
-# or for development:
-npm run dev
-```
+Money transfers are executed through a MySQL stored procedure that ensures transactional consistency and prevents partial updates during failures.
 
-Backend runs on http://localhost:5000
+### Automated Audit Trail
 
-### 3. Frontend
+Database triggers automatically record balance modifications, creating an immutable audit history for account activity.
 
-```bash
-cd frontend
-npm install
-npm run dev
-```
+### Reporting Layer
 
-Frontend runs on http://localhost:3000
-The Vite dev server proxies /api → http://localhost:5000
+Custom SQL views provide optimized reporting for:
 
-### 4. Production Build
+- Customer account summaries
+- Loan performance tracking
+- Branch-wise analytics
 
-```bash
-cd frontend
-npm run build
-# Static files will be in frontend/dist/
-```
+### Query Optimization
 
-## API Endpoints
+Indexes were introduced on frequently accessed columns to improve filtering, search performance, and reporting efficiency.
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | /api/dashboard/stats | Dashboard KPIs |
-| GET | /api/dashboard/top-customers | Top 5 by balance |
-| GET | /api/dashboard/recent-transactions | Last 10 transactions |
-| GET | /api/dashboard/loan-analytics | Loan charts data |
-| GET | /api/dashboard/branch-analytics | Branch comparison |
-| GET | /api/dashboard/transaction-trends | 30-day volume trend |
-| GET/POST | /api/customers | List / create customers |
-| GET/PUT/DELETE | /api/customers/:id | Get / update / delete customer |
-| GET/POST | /api/accounts | List / create accounts |
-| GET/PUT | /api/accounts/:id | Get / update account |
-| GET | /api/accounts/:id/transactions | Account transaction history |
-| POST | /api/transactions/transfer | Money transfer (stored procedure) |
-| POST | /api/transactions/deposit | Deposit funds |
-| POST | /api/transactions/withdraw | Withdraw funds |
-| GET | /api/transactions | List all transactions |
-| GET/POST | /api/loans | List / create loans |
-| PATCH | /api/loans/:id/status | Approve / reject loan |
-| GET/POST | /api/branches | List / create branches |
-| GET/POST | /api/employees | List / create employees |
-| GET/PUT/DELETE | /api/employees/:id | Manage employee |
-| GET | /api/audit-logs | View audit trail |
-| GET | /api/reports/customer-account-summary | DB view: customer_account_summary |
-| GET | /api/reports/loan-summary | DB view: loan_summary |
-| GET | /api/reports/frozen-closed-accounts | Frozen/Closed accounts |
-| GET | /api/reports/high-value-transactions | Transactions > ₹1,00,000 |
-| GET | /api/reports/branch-wise-deposits | Branch deposit rankings |
+## Technology Stack
 
-## Database Design
+### Frontend
 
-### Tables
-- `customers` — customer profiles
-- `branches` — bank branches with IFSC codes
-- `accounts` — savings/current accounts with status tracking
-- `transactions` — all money movements
-- `employees` — staff with role hierarchy
-- `loans` — loan applications with EMI tracking
-- `audit_logs` — auto-populated by trigger on every balance change
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+- Axios
+- Recharts
 
-### Stored Procedures
-- `TransferMoney(sender_id, receiver_id, amount, mode)` — ACID-compliant money transfer
+### Backend
+
+- Node.js
+- Express.js
+- MySQL2
+- REST API Architecture
+
+### Database
+
+- MySQL
+- Stored Procedures
+- Triggers
+- Views
+- Indexes
+
+### Deployment
+
+- Vercel (Frontend)
+- Render (Backend)
+- Railway (Database)
+
+## Database Components
+
+### Core Tables
+
+- customers
+- accounts
+- transactions
+- loans
+- employees
+- branches
+- audit_logs
+
+### Stored Procedure
+
+TransferMoney(sender_id, receiver_id, amount, mode)
 
 ### Triggers
-- `prevent_negative_balance` — BEFORE UPDATE, blocks balance < 0
-- `account_audit_trigger` — AFTER UPDATE, logs every balance change to audit_logs
+
+- Prevent negative account balances
+- Automatic balance audit logging
 
 ### Views
-- `customer_account_summary` — customer + account + branch joined view
-- `loan_summary` — loan + customer + approver joined view
 
-### Indexes
-- `idx_customer_email` — fast email lookups
-- `idx_account_number` — fast account number search
-- `idx_transaction_time` — fast time-range queries
-- `idx_loan_status` — fast loan status filters
-- `idx_branch_city` — fast city-based branch search
+- customer_account_summary
+- loan_summary
+
+## Lessons Learned
+
+During development I worked on:
+
+- Designing relational database schemas
+- Implementing transactional banking operations
+- Building REST APIs with Express
+- Managing frontend-backend integration
+- Deploying distributed services across Vercel, Render, and Railway
+- Debugging production networking and database connectivity issues
+
+## Future Improvements
+
+- JWT authentication and role-based access control
+- Multi-factor authentication
+- Account statements in PDF format
+- Notification system for transactions
+- Containerized deployment using Docker
+- Automated testing and CI/CD pipelines
