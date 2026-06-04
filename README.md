@@ -7,9 +7,9 @@ The project was built to explore end-to-end system design using a modern React f
 ## Live Architecture
 
 Frontend (Vercel)
-↓
+->
 Node.js / Express API (Render)
-↓
+->
 MySQL Database (Railway)
 
 ## Key Features
